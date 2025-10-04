@@ -1,0 +1,19 @@
+# Generate a doccker compose file for a local postgres database
+
+version: '3.8'
+services:
+  db:
+    image: postgres:latest
+    container_name: firo-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: neondb
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
+    driver: local

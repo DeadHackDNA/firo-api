@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model FireRecord {
+  id            String   @id @default(auto()) @map("_id") @db.ObjectId
+  latitude      Float?
+  longitude     Float?
+  brightness    Float?
+  scan          Float?
+  track         Float?
+  acq_date      DateTime // required for date-range queries
+  acq_time      String?
+  satellite     String?
+  instrument    String?
+  confidence    Float?
+  version       Float?
+  bright_t31    Float?
+  frp           Float?
+  daynight      String?
+  type          Float?
+  elevation     Float?
+  land_cover    Float?
+  slope         Float?
+  temperature   Float?
+  wind_speed    Float?
+  precipitation Float?
+
+  @@index([acq_date])
+}
